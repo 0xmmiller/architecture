@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sanity - ADRs exist
+        run: |
+          test -f adr/001-message-broker.md
+          test -f adr/003-idempotency.md
+          test -f adr/006-reorg-handling.md
+          test -f docs/failure-scenarios.md
