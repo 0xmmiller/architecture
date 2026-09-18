@@ -32,7 +32,7 @@ the failure scenarios, then the service READMEs.
 ```mermaid
 flowchart LR
   subgraph Clients
-    App[Web / SDK]
+    App[atlas-web / SDK]
   end
 
   subgraph Edge
@@ -51,6 +51,7 @@ flowchart LR
   subgraph ReadPath
     Port[portfolio-service]
     An[analytics-service]
+    Ntf[notification-service Go]
   end
 
   Bus[(Redpanda / Kafka)]
@@ -66,6 +67,7 @@ flowchart LR
   Idx --> Bus
   Bus --> Port
   Bus --> An
+  Bus --> Ntf
   Tx --> PG
   Port --> PG
   An --> PG
@@ -73,7 +75,8 @@ flowchart LR
   Tx --> RD
 ```
 
-Atlas is five services, not a microservice zoo.
+Atlas is six services. The sixth is Go because fan-out is a different
+problem than FastAPI domain work ([ADR-007](adr/007-go-notification-plane.md)).
 
 | Service | Exists because | Does not do |
 | --- | --- | --- |
@@ -82,6 +85,8 @@ Atlas is five services, not a microservice zoo.
 | [blockchain-indexer](https://github.com/0xmmiller/blockchain-indexer) | Canonical chain facts, including reorgs | Serving API queries |
 | [portfolio-service](https://github.com/0xmmiller/portfolio-service) | Low-latency read models for positions | Re-scanning logs |
 | [analytics-service](https://github.com/0xmmiller/analytics-service) | Heavy historical aggregations | Hot path for wallets |
+| [notification-service](https://github.com/0xmmiller/notification-service) | SSE/webhook fan-out from bus facts | Owning intent or position state |
+| [atlas-web](https://github.com/0xmmiller/atlas-web) | Operator UI on platform-api | Talking to internals |
 
 Supporting repos: [infrastructure](https://github.com/0xmmiller/infrastructure),
 [sdk-python](https://github.com/0xmmiller/sdk-python).
@@ -104,7 +109,7 @@ Supporting repos: [infrastructure](https://github.com/0xmmiller/infrastructure),
 3. [ADR-003 Idempotency](adr/003-idempotency.md) - DB uniqueness is the source of truth
 4. [ADR-004 Event-driven architecture](adr/004-event-driven-architecture.md) - facts vs commands
 5. [ADR-005 Observability](adr/005-observability.md) - traces over more dashboards
-6. [ADR-006 Reorg handling](adr/006-reorg-handling.md) - indexer owns chain canonicality
+7. [ADR-007 Go notification plane](adr/007-go-notification-plane.md) - fan-out in Go, domain in Python
 
 ## Run it
 

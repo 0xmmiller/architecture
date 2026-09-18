@@ -18,5 +18,7 @@ Format is Michael Nygard's, kept short enough to read in a hiring loop.
 | [005](005-observability.md) | OpenTelemetry as the observability backbone | Accepted |
 | [006](006-reorg-handling.md) | Indexer is the source of chain canonicality | Accepted |
 
+| [007](007-go-notification-plane.md) | Go for the notification plane | Accepted |
+
 When a decision is superseded, the old ADR stays. We add a new one and
 link back. Rewriting history of *why* is worse than being wrong.
