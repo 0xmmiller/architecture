@@ -109,8 +109,10 @@ Supporting repos: [infrastructure](https://github.com/0xmmiller/infrastructure),
 3. [ADR-003 Idempotency](adr/003-idempotency.md) - DB uniqueness is the source of truth
 4. [ADR-004 Event-driven architecture](adr/004-event-driven-architecture.md) - facts vs commands
 5. [ADR-005 Observability](adr/005-observability.md) - traces over more dashboards
+6. [ADR-006 Reorg handling](adr/006-reorg-handling.md) - indexer owns chain canonicality
 7. [ADR-007 Go notification plane](adr/007-go-notification-plane.md) - fan-out in Go, domain in Python
 8. [ADR-008 Local model runtime](adr/008-local-model-runtime.md) - Ollama/vLLM first, vendor optional
+9. [ADR-009 RAG citations](adr/009-rag-citations.md) - retrieve owned docs, not the chain
 
 ## Run it
 
