@@ -19,6 +19,7 @@ Format is Michael Nygard's, kept short enough to read in a hiring loop.
 | [006](006-reorg-handling.md) | Indexer is the source of chain canonicality | Accepted |
 
 | [007](007-go-notification-plane.md) | Go for the notification plane | Accepted |
+| [008](008-local-model-runtime.md) | Local models as first-class agent runtime | Accepted |
 
 When a decision is superseded, the old ADR stays. We add a new one and
 link back. Rewriting history of *why* is worse than being wrong.
